@@ -1,33 +1,33 @@
-const lenses = ['Full-stack Development', 'QA', 'Product Management'] as const
+import { Container } from '@/components/ui'
+import { LensSwitch, useLensContent } from '@/lens'
 
 export function Home() {
+  const focus = useLensContent({
+    engineering:
+      'Right now: building Flutter + PHP/MySQL features as a full-stack intern.',
+    qa: 'Right now: adding real test suites to services that shipped with none.',
+    product: 'Right now: writing the PRD and picking the metric before the code.',
+  })
+
   return (
-    <section className="mx-auto flex max-w-2xl flex-col gap-6 px-6 pb-24 pt-28 sm:pt-36">
+    <Container className="flex flex-col gap-6 pb-24 pt-28 sm:pt-36">
       <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.2em] text-accent">
         Rismy Rimasha
       </p>
 
-      <h1 className="font-display text-[2.15rem] font-bold leading-[1.08] tracking-[-0.02em] sm:text-[3rem] sm:leading-[1.04]">
+      <h1 className="text-display font-bold leading-[1.05] tracking-[-0.02em]">
         <span className="block">Full-stack developer.</span>
         <span className="block">I spec it, build it, test it, and ship it.</span>
       </h1>
 
-      <p className="max-w-md font-sans text-[1.0625rem] leading-[1.75] text-ink-soft">
+      <p className="max-w-md text-[1.0625rem] leading-[1.75] text-ink-soft">
         3rd-year software engineering student and
         <br />
         full-stack developer intern (Flutter, PHP).
       </p>
 
-      <ul className="flex flex-wrap gap-2" aria-label="Focus areas">
-        {lenses.map((lens) => (
-          <li
-            key={lens}
-            className="rounded-full border border-hairline bg-surface px-3.5 py-1.5 font-mono text-xs font-medium tracking-[0.01em] text-ink-soft transition-colors hover:border-accent/40 hover:text-ink"
-          >
-            {lens}
-          </li>
-        ))}
-      </ul>
+      <LensSwitch className="mt-1" />
+      <p className="font-mono text-xs text-muted">{focus}</p>
 
       <div className="flex flex-wrap gap-4 pt-2 font-mono text-sm font-medium">
         <a
@@ -45,9 +45,9 @@ export function Home() {
       </div>
 
       <p className="pt-8 font-mono text-xs text-muted">
-        Foundation build &mdash; the lens switcher, project showcase, and case
-        studies land in the next phases.
+        Phase 2 &mdash; design system &amp; the lens switcher. Project showcase and
+        case studies next.
       </p>
-    </section>
+    </Container>
   )
 }

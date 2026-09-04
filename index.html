@@ -23,16 +23,33 @@
     />
     <title>Rismy Rimasha — Full-stack Developer</title>
     <script>
-      // Apply the saved (or system) theme before first paint to avoid a flash.
+      // Apply the saved (or system) theme + the active lens before first paint,
+      // so there is no theme flash and the accent hue is right on deep links.
       ;(function () {
+        var el = document.documentElement
         try {
           var saved = localStorage.getItem('theme')
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-          if (saved === 'dark' || (!saved && prefersDark)) {
-            document.documentElement.classList.add('dark')
-          }
+          if (saved === 'dark' || (!saved && prefersDark)) el.classList.add('dark')
         } catch (e) {
           /* storage blocked — default to light */
+        }
+        try {
+          var lenses = ['engineering', 'qa', 'product']
+          var param = new URLSearchParams(location.search).get('lens')
+          var stored = null
+          try {
+            stored = localStorage.getItem('lens')
+          } catch (e) {}
+          var lens =
+            lenses.indexOf(param) > -1
+              ? param
+              : lenses.indexOf(stored) > -1
+                ? stored
+                : 'engineering'
+          el.setAttribute('data-lens', lens)
+        } catch (e) {
+          el.setAttribute('data-lens', 'engineering')
         }
       })()
     </script>

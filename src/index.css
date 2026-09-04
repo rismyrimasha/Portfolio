@@ -16,10 +16,17 @@
   --c-ink-soft: #3b424e;
   --c-muted: #5b6472;
   --c-hairline: #e0e3e9;
+
   --c-accent: #2f55e0;
+  --c-accent-fg: #ffffff;
+
   --c-eng: #2f55e0;
   --c-qa: #0f8a5f;
   --c-pm: #c2570c;
+
+  --c-success: #0f8a5f;
+  --c-warning: #b45309;
+  --c-danger: #c2413c;
 }
 
 .dark {
@@ -30,10 +37,30 @@
   --c-ink-soft: #c4c9d2;
   --c-muted: #98a1ae;
   --c-hairline: #272e39;
+
   --c-accent: #6f8cff;
+  --c-accent-fg: #0b0e12;
+
   --c-eng: #6f8cff;
   --c-qa: #34c88e;
   --c-pm: #f0894b;
+
+  --c-success: #34c88e;
+  --c-warning: #d9a441;
+  --c-danger: #f0776f;
+}
+
+/* The signature interaction: once a lens is active, the accent hue follows it.
+   `:root[data-lens=...]` (0,2,0) outranks `.dark` (0,1,0), and var() resolves
+   `--c-eng` etc. against the current theme, so this stays theme-correct. */
+:root[data-lens='engineering'] {
+  --c-accent: var(--c-eng);
+}
+:root[data-lens='qa'] {
+  --c-accent: var(--c-qa);
+}
+:root[data-lens='product'] {
+  --c-accent: var(--c-pm);
 }
 
 @theme inline {
@@ -44,10 +71,23 @@
   --color-ink-soft: var(--c-ink-soft);
   --color-muted: var(--c-muted);
   --color-hairline: var(--c-hairline);
+
   --color-accent: var(--c-accent);
+  --color-accent-fg: var(--c-accent-fg);
+
   --color-eng: var(--c-eng);
   --color-qa: var(--c-qa);
   --color-pm: var(--c-pm);
+
+  --color-success: var(--c-success);
+  --color-warning: var(--c-warning);
+  --color-danger: var(--c-danger);
+
+  /* Display sizes — the type scale's top end. Body/UI use Tailwind's defaults. */
+  --text-display: clamp(2.25rem, 1.8rem + 2.2vw, 3.25rem);
+  --text-display--line-height: 1.04;
+  --text-display-sm: clamp(1.7rem, 1.45rem + 1.1vw, 2.2rem);
+  --text-display-sm--line-height: 1.1;
 
   /* Display: Bricolage Grotesque (loaded). Body: fast system sans for now —
      a serif reading face joins in the case-study phase. Mono: JetBrains Mono. */
