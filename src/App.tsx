@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { SkipLink } from '@/components/ui'
-import { ThemeToggle } from '@/components/ThemeToggle'
+import { Nav } from '@/components/Nav'
 import { SiteFooter } from '@/components/SiteFooter'
 import { Home } from '@/pages/Home'
 import { NotFound } from '@/pages/NotFound'
@@ -10,7 +10,7 @@ export function App() {
   return (
     <div className="flex min-h-dvh flex-col bg-bg text-ink">
       <SkipLink />
-      <ThemeToggle />
+      <Nav />
       <main id="main" className="flex-1">
         <Routes>
           <Route index element={<Home />} />

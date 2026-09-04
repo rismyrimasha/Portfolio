@@ -7,7 +7,7 @@ Personal portfolio site. One page, three lenses — a visitor reads me as an
 back all three.
 
 **Live:** deployed on Vercel · planned domain `rismyrimasha.dev`
-**Status:** Phase 2 — design system + the lens switcher
+**Status:** Phase 3 — core sections (hero, approach, experience, skills, contact)
 
 ## Stack
 
@@ -63,13 +63,16 @@ src/
   main.tsx              # entry — <BrowserRouter> > <LensProvider> > <App>
   App.tsx               # layout shell + routes (+ dev-only /components)
   index.css             # Tailwind v4 import + theme/lens tokens
+  content/             # profile, hero, approach, experience, skills (copy + data)
   pages/
-    Home.tsx            # hero + lens switch
+    Home.tsx            # composes the section components
     NotFound.tsx        # 404
     Components.tsx      # dev-only design-system kitchen sink
   components/
+    Nav.tsx             # sticky nav + scroll-spy + lens switch + theme toggle
     ThemeToggle.tsx     # light/dark switch
-    SiteFooter.tsx
+    SiteFooter.tsx      # footer + colophon
+    sections/           # Hero, Approach, Experience, Skills, Contact
     ui/                 # Container, Section, Button, Tag, IconButton, SkipLink
   lens/
     LensContext.ts      # context object
@@ -80,6 +83,7 @@ src/
     lens.test.tsx
   lib/
     useTheme.ts         # .dark class + localStorage, no-flash via index.html
+    useScrollSpy.ts     # IntersectionObserver — active nav section
     utils.ts            # cn() class merge helper
 ```
 
@@ -87,7 +91,7 @@ src/
 
 - [x] **Phase 1** — foundation: repo, TypeScript, clean shell, tokens, CI, deploy config
 - [x] **Phase 2** — design system + the lens-switcher primitive
-- [ ] **Phase 3** — core sections (hero, approach, experience, skills, contact)
+- [x] **Phase 3** — core sections (hero, approach, experience, skills, contact)
 - [ ] **Phase 4** — project showcase + case studies (MDX), live demos
 - [ ] **Phase 5** — content: case studies, a public PRD, a test plan, writing
 - [ ] **Phase 6** — polish: motion, a11y, SEO/OG, performance budget

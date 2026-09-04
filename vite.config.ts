@@ -17,7 +17,9 @@ export default defineConfig({
     globals: false,
     setupFiles: ['./src/test/setup.ts'],
     css: false,
-    // Thread pool spawns faster than forks on this machine.
-    pool: 'threads',
+    // The threads pool intermittently drops its runner on this machine.
+    // Forks + no file parallelism is slower but reliable.
+    pool: 'forks',
+    fileParallelism: false,
   },
 })

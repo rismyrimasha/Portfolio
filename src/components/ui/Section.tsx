@@ -18,7 +18,7 @@ export function Section({
   ...props
 }: SectionProps) {
   return (
-    <section className={cn('scroll-mt-16 py-16 sm:py-24', className)} {...props}>
+    <section className={cn('scroll-mt-20 py-16 sm:py-24', className)} {...props}>
       <Container size={size}>
         {eyebrow ? (
           <p className="mb-3 font-mono text-[0.7rem] font-medium uppercase tracking-[0.2em] text-accent">

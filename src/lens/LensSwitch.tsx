@@ -1,11 +1,18 @@
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { cn } from '@/lib/utils'
-import { LENSES, LENS_LABELS, isLens } from './types'
+import { LENSES, LENS_LABELS, LENS_LABELS_SHORT, isLens } from './types'
 import { useLens } from './useLens'
 
+type LensSwitchProps = {
+  className?: string
+  /** `full` labels for the hero, `compact` for the sticky nav. */
+  variant?: 'full' | 'compact'
+}
+
 /** Boxed segmented control — pick how to read the portfolio. */
-export function LensSwitch({ className }: { className?: string }) {
+export function LensSwitch({ className, variant = 'full' }: LensSwitchProps) {
   const { lens, setLens } = useLens()
+  const labels = variant === 'compact' ? LENS_LABELS_SHORT : LENS_LABELS
 
   return (
     <RadioGroup.Root
@@ -30,7 +37,7 @@ export function LensSwitch({ className }: { className?: string }) {
             'data-[state=checked]:bg-surface data-[state=checked]:text-accent data-[state=checked]:shadow-sm',
           )}
         >
-          {LENS_LABELS[value]}
+          {labels[value]}
         </RadioGroup.Item>
       ))}
     </RadioGroup.Root>

@@ -15,6 +15,13 @@ export const LENS_LABELS: Record<Lens, string> = {
   product: 'Product Management',
 }
 
+/** Condensed labels for the sticky nav's switch. */
+export const LENS_LABELS_SHORT: Record<Lens, string> = {
+  engineering: 'Eng',
+  qa: 'QA',
+  product: 'Product',
+}
+
 export const DEFAULT_LENS: Lens = 'engineering'
 
 export const LENS_STORAGE_KEY = 'lens'
